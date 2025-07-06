@@ -9,9 +9,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      // "bundleIdentifier": "com.SyntaxStudios.MovieMunch"
     },
     "android": {
+      // "package": "com.SyntaxStudios.MovieMunch",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"

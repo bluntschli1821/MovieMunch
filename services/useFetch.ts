@@ -17,7 +17,6 @@ export const useFetch = <T>(
 
       setData(response);
     } catch (err) {
-      //@ts-ignore
       setError(err instanceof Error ? err : new Error("An error occured"));
     } finally {
       setLoading(false);

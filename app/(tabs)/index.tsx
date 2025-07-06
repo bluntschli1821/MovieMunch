@@ -12,6 +12,7 @@ import {
 import { useRouter } from "expo-router";
 import { useFetch } from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
+import MovieCard from "@/components/movieCard";
 
 export default function Index() {
   const router = useRouter();
@@ -39,27 +40,27 @@ export default function Index() {
           <ActivityIndicator
             size="large"
             color="#0000ff"
-            className="mt-10 self-center"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
           />
         ) : moviesError ? (
           <Text>Error : {moviesError?.message}</Text>
         ) : (
           <View className="flex-1 mt-5">
-            <SearchBar
+            {/* <SearchBar
+              onChangeText={() => {}}
               onPress={() => router.push("/search")}
               placeholder="Search for a movie"
-            />
+              value=""
+            /> */}
 
             <>
               <Text className="text-lg text-white font-bold, mt-5 mb-3">
-                Latest Movies
+                Popular Movies
               </Text>
 
               <FlatList
                 data={movies}
-                renderItem={({ item }) => (
-                  <Text className="text-white text-sm">{item.title}</Text>
-                )}
+                renderItem={({ item }) => <MovieCard {...item} />}
                 keyExtractor={(item) => item.id.toString()}
                 numColumns={3}
                 columnWrapperStyle={{
