@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import MovieCard from "@/components/movieCard";
 import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
@@ -17,31 +18,27 @@ export default function Search() {
     error: moviesError,
     refetch: loadMovies,
     reset,
-  } = useFetch(() => fetchMovies({ query: query }));
+  } = useFetch(() => fetchMovies({ query: query }), false);
 
   // 1. Fetch movies when query changes
-  useEffect(
-    () => {
-      const timeoutId = setTimeout(async () => {
-        if (query.trim()) {
-          await loadMovies();
-        } else {
-          reset();
-        }
-      }, 500);
-
-      return () => clearTimeout(timeoutId);
-    },
-    // @ts-ignore
-    [query]
-  );
-
-  // 2. Update search count only when movies change and query is valid
   useEffect(() => {
-    if (query.trim() && movies && movies.length > 0) {
+    const timeoutId = setTimeout(async () => {
+      if (query.trim()) {
+        await loadMovies();
+      } else {
+        reset();
+      }
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [query]);
+
+  // 2. Update search count when query changes and there are movies returned
+  useEffect(() => {
+    if (movies && movies.length > 0) {
       updateSearchCount(query, movies[0]);
     }
-  }, [query, movies]);
+  }, [movies]);
 
   return (
     <View className="flex-1 bg-primary">

@@ -4,9 +4,9 @@ import { icons } from "@/constants/icons";
 
 interface SearchBarProps {
   placeholder: string;
-  value: string;
+  value?: string;
   onPress?: () => void;
-  onChangeText: (text: string) => void;
+  onChangeText?: (text: string) => void;
 }
 
 export default function SearchBar({
