@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const useFetch = <T>(
   fetchFunction: () => Promise<T>,
@@ -30,11 +30,15 @@ export const useFetch = <T>(
     setLoading(false);
   };
 
-  useEffect(() => {
-    if (autoFetch) {
-      fetchData();
-    }
-  }, []);
+  useEffect(
+    () => {
+      if (autoFetch) {
+        fetchData();
+      }
+    },
+    //@ts-ignore
+    []
+  );
 
   return { data, error, loading, reset, refetch: fetchData };
 };
