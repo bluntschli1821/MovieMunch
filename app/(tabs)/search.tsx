@@ -1,12 +1,12 @@
-import { View, Text, Image, FlatList, ActivityIndicator } from "react-native";
-import React, { useState, useEffect } from "react";
-import { images } from "@/constants/images";
 import MovieCard from "@/components/movieCard";
-import { useFetch } from "@/services/useFetch";
-import { fetchMovies } from "@/services/api";
 import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
-import { updateSearchHistory } from "@/services/appwrite";
+import { images } from "@/constants/images";
+import { fetchMovies } from "@/services/api";
+import { updateSearchCount } from "@/services/appwrite";
+import { useFetch } from "@/services/useFetch";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 
 export default function Search() {
   const [query, setQuery] = useState("");
@@ -19,19 +19,29 @@ export default function Search() {
     reset,
   } = useFetch(() => fetchMovies({ query: query }));
 
+  // 1. Fetch movies when query changes
+  useEffect(
+    () => {
+      const timeoutId = setTimeout(async () => {
+        if (query.trim()) {
+          await loadMovies();
+        } else {
+          reset();
+        }
+      }, 500);
+
+      return () => clearTimeout(timeoutId);
+    },
+    // @ts-ignore
+    [query]
+  );
+
+  // 2. Update search count only when movies change and query is valid
   useEffect(() => {
-    updateSearchHistory(query, movies[0]); // Update search history when query changes
-
-    const timeoutId = setTimeout(async () => {
-      if (query.trim()) {
-        await loadMovies();
-      } else {
-        reset();
-      }
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
-  }, [query]);
+    if (query.trim() && movies && movies.length > 0) {
+      updateSearchCount(query, movies[0]);
+    }
+  }, [query, movies]);
 
   return (
     <View className="flex-1 bg-primary">
