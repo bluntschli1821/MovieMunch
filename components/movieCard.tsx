@@ -1,13 +1,12 @@
+import { icons } from "@/constants/icons";
+import { Link } from "expo-router";
+import React from "react";
 import {
-  View,
+  Image,
   Text,
   TouchableOpacity,
-  Image,
-  ImageBackground,
+  View
 } from "react-native";
-import React from "react";
-import { Link } from "expo-router";
-import { icons } from "@/constants/icons";
 
 export default function MovieCard({
   id,

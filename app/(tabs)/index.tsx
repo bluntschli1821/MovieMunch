@@ -1,6 +1,12 @@
+import MovieCard from "@/components/movieCard";
 import SearchBar from "@/components/SearchBar";
+import TrendingMCard from "@/components/TrendingCard";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
+import { fetchMovies } from "@/services/api";
+import { getTrendigMovies } from "@/services/appwrite";
+import { useFetch } from "@/services/useFetch";
+import { useRouter } from "expo-router";
 import {
   ActivityIndicator,
   FlatList,
@@ -9,12 +15,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { useRouter } from "expo-router";
-import { useFetch } from "@/services/useFetch";
-import { fetchMovies } from "@/services/api";
-import MovieCard from "@/components/movieCard";
-import { getTrendigMovies } from "@/services/appwrite";
-import TrendingMCard from "@/components/TrendingCard";
 
 export default function Index() {
   const router = useRouter();

@@ -1,17 +1,17 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
-import React from "react";
-import { Link } from "expo-router";
-import MaskedView from "@react-native-masked-view/masked-view";
 import { images } from "@/constants/images";
+import MaskedView from "@react-native-masked-view/masked-view";
+import { Link } from "expo-router";
+import React from "react";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
-type TrendingCardProps = {
+interface TrendingCardProps {
   movie: {
     movie_id: number;
     title: string;
     poster_url: string;
   };
   index: number;
-};
+}
 
 const TrendingMCard = ({
   movie: { movie_id, title, poster_url },
