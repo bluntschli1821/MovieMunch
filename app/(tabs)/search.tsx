@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import MovieCard from "@/components/movieCard";
 import SearchBar from "@/components/SearchBar";
-import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { fetchMovies } from "@/services/api";
 import { updateSearchCount } from "@/services/appwrite";

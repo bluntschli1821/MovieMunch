@@ -22,7 +22,7 @@ const FullMovieDetails = ({ label, value }: FullMovieDetailsProps) => (
 export default function MovieDetails() {
   const { id } = useLocalSearchParams();
 
-  const { data: movie, loading } = useFetch(() =>
+  const { data: movie } = useFetch(() =>
     fetchMovieDetails(id as string)
   );
 

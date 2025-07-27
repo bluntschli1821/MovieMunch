@@ -1,11 +1,9 @@
 import MovieCard from "@/components/movieCard";
-import SearchBar from "@/components/SearchBar";
 import TrendingMCard from "@/components/TrendingCard";
 import { images } from "@/constants/images";
 import { fetchMovies } from "@/services/api";
 import { getTrendigMovies } from "@/services/appwrite";
 import { useFetch } from "@/services/useFetch";
-import { useRouter } from "expo-router";
 import {
   ActivityIndicator,
   FlatList,
@@ -16,8 +14,6 @@ import {
 } from "react-native";
 
 export default function Index() {
-  const router = useRouter();
-
   const {
     data: trendingMovies,
     loading: trendingLoading,
@@ -53,12 +49,11 @@ export default function Index() {
           <Text>Error : {moviesError?.message || trendingError?.message}</Text>
         ) : (
           <View className="flex-1 mt-5">
-            <SearchBar
-              onChangeText={() => {}}
-              onPress={() => router.push("/search")}
-              placeholder="Search for a movie"
-              value=""
-            />
+            <>
+              <Text className="text-3xl text-indigo-500 font-bold text-center mb-5">
+                Welcome to MovieMunch! Search for a movie via the search tab.
+              </Text>
+            </>
 
             {trendingMovies && (
               <View className="flex-1 mt-10">

@@ -9,15 +9,15 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
-      // "bundleIdentifier": "com.SyntaxStudios.MovieMunch"
+      "supportsTablet": true,
+      "icon": "./assets/images/logo.png"
     },
     "android": {
-      // "package": "com.SyntaxStudios.MovieMunch",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
+      "icon": "./assets/images/logo.png",
       "edgeToEdgeEnabled": true
     },
     "web": {
