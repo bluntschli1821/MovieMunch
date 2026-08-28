@@ -13,15 +13,20 @@ interface TrendingCardProps {
   index: number;
 }
 
-const TrendingMCard = ({
+export default function TrendingMCard({
   movie: { movie_id, title, poster_url },
   index,
-}: TrendingCardProps) => {
+}: TrendingCardProps) {
+  const [posterUnavailable, setPosterUnavailable] = React.useState(
+    !poster_url?.trim(),
+  );
+
   return (
     <Link href={`/movies/${movie_id}`} asChild>
       <TouchableOpacity className="w-32 relative pl-5 ">
         <Image
-          source={{ uri: poster_url }}
+          source={posterUnavailable ? images.none : { uri: poster_url }}
+          onError={() => setPosterUnavailable(true)}
           className="w-32 h-48 rounded-lg"
           resizeMode="cover"
         />
@@ -48,6 +53,4 @@ const TrendingMCard = ({
       </TouchableOpacity>
     </Link>
   );
-};
-
-export default TrendingMCard;
+}
